@@ -5,6 +5,8 @@ import wandb
 from omegaconf import DictConfig
 
 from src.train import run_model
+from dotenv import load_dotenv
+load_dotenv()  # automatically reads .env in current directory
 
 if "CONFIG_PATH" in os.environ:
     # Split config path and config name from config path (split by last '/')

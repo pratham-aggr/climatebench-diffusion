@@ -543,8 +543,12 @@ def does_any_ckpt_file_exist(wandb_run: wandb.apis.public.Run, only_best_and_las
                 return True
 
     names = ["last.ckpt", "best.ckpt"] if only_best_and_last else None
-    if "checkpoint/in_s3" in wandb_run.summary.keys():
-        return True  # Using S3 storage
+    # Check if summary exists and is a dict-like object before accessing keys
+    try:
+        if hasattr(wandb_run.summary, 'keys') and "checkpoint/in_s3" in wandb_run.summary.keys():
+            return True  # Using S3 storage
+    except (AttributeError, TypeError):
+        pass  # Summary not available or not a dict, continue to file check
 
     return len([1 for f in wandb_run.files(names=names) if f.name.endswith(".ckpt")]) > 0
 

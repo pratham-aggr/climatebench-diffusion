@@ -6,8 +6,8 @@ defaults:
 
 
 # Override data dir for local runs here!
-# datamodule:
-#   data_dir: "C:/Users/USER_XYZ/data/"
+datamodule:
+  data_dir: "/home/praggarwal/climatebench-diffusion/data"
 #   num_workers: 0
 #   batch_size: 4
 
@@ -22,7 +22,7 @@ defaults:
 
 logger:
  wandb:
-   entity: "climate-analytics-lab" 
+   entity: "praggarwal-uc-san-diego"  #change as per your wandb account
    save_to_s3_bucket: False 
    save_to_wandb: False
    save_best_ckpt: False 
